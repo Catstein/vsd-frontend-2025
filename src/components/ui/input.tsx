@@ -2,9 +2,11 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-type InputProps = {} & React.ComponentProps<"input">;
+type InputProps = {
+  errorMessage?: string;
+} & React.ComponentProps<"input">;
 
-function Input({ className, type, ...props }: InputProps) {
+function Input({ className, type, errorMessage, ...props }: InputProps) {
   return (
     <div>
       <label htmlFor={props.id}>{props.title}</label>
@@ -20,6 +22,10 @@ function Input({ className, type, ...props }: InputProps) {
         )}
         {...props}
       />
+
+      {errorMessage !== undefined && (
+        <p className="text-destructive text-[0.75rem]">{errorMessage}</p>
+      )}
     </div>
   );
 }
